@@ -1,12 +1,12 @@
 import "./App.css";
-import Groups from "./Groups";
+import GroupPage from "./GroupPage";
 // import HomePage from "./HomePage";
 
 function App() {
   return (
-    <div className="bg-blue-50 min-h-screen text-blue-950 flex flex-col items-center">
+    <div className="bg-blue-50 min-h-screen text-blue-950 flex flex-col items-center w-full">
       {/* <HomePage /> */}
-      <Groups />
+      <GroupPage />
     </div>
   );
 }

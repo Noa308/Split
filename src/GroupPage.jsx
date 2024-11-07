@@ -1,13 +1,13 @@
 import Expenses from "./Expenses";
 import GroupInfo from "./GroupInfo";
 
-function Group() {
+function GroupPage() {
   return (
-    <div>
+    <div className="flex flex-col items-center w-full">
       <GroupInfo />
       <Expenses />
     </div>
   );
 }
 
-export default Group;
+export default GroupPage;

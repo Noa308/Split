@@ -1,6 +1,6 @@
 function Expense({ id, title, amount, date }) {
   return (
-    <div className="flex flex-row space-x-4">
+    <div className="grid grid-cols-4 py-2">
       <p>{id}</p>
       <p>{date}</p>
       <p>{title}</p>

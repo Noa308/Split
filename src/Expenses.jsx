@@ -15,7 +15,17 @@ function Expenses() {
       date={expenses.date}
     />
   ));
-  return <div>{orederdExpenses}</div>;
+  return (
+    <div className="w-2/3 ">
+      <div className="grid grid-cols-4 text-lg font-bold">
+        <p>Expense Number</p>
+        <p>Expense date</p>
+        <p>Title</p>
+        <p>Expense Amount</p>
+      </div>
+      <div className="py-2">{orederdExpenses}</div>
+    </div>
+  );
 }
 
 export default Expenses;
