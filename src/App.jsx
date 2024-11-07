@@ -4,7 +4,7 @@ import Groups from "./Groups";
 
 function App() {
   return (
-    <div className="bg-blue-50 min-h-screen text-blue-950 flex-col">
+    <div className="bg-blue-50 min-h-screen text-blue-950 flex flex-col items-center">
       {/* <HomePage /> */}
       <Groups />
     </div>
