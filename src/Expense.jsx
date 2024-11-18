@@ -1,10 +1,12 @@
-function Expense({ id, title, amount, date }) {
+function Expense({ id, title, amount, date, whoPay, howToSplit, columnsSize }) {
   return (
-    <div className="grid grid-cols-4 py-2">
+    <div className={`grid grid-cols-${columnsSize} py-2`}>
       <p>{id}</p>
+      <p> {whoPay}</p>
       <p>{date}</p>
       <p>{title}</p>
       <p>{amount}</p>
+      <p>{howToSplit}</p>
     </div>
   );
 }
