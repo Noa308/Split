@@ -1,11 +1,11 @@
 import Expenses from "./Expenses";
 import GroupInfo from "./GroupInfo";
-import UseBackButton from "./useBackButton";
+import BackButton from "./BackButton";
 
 function GroupPage() {
   return (
     <div>
-      <UseBackButton path="/" text="Back to the home page 🔙" />
+      <BackButton path="/" text="Back to the home page 🔙" />
       <div className="flex flex-col items-center w-full">
         <GroupInfo />
         <Expenses />

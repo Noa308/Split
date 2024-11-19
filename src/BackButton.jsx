@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function UseBackButton({ path, text }) {
+function BackButton({ path, text }) {
   let navigate = useNavigate();
 
   return (
@@ -12,6 +12,4 @@ function UseBackButton({ path, text }) {
   );
 }
 
-export default UseBackButton;
-
-//this is a custom hook
+export default BackButton;
