@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-function useGoToPath() {
+const useGoToPath = () => {
   const navigate = useNavigate();
-
-  return (path) => navigate(path);
-  //that return make it reusable for any path any time. if i move path as a prop its not working.
-}
+  const goToPath = (path) => navigate(path);
+  return goToPath;
+};
 
 export default useGoToPath;

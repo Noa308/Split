@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { GroupContext } from "./GroupContext";
 import useGoToPath from "./useGoToPath";
 
-function ChooseGroup() {
+const ChooseGroup = () => {
   const { groups } = useContext(GroupContext);
+
   const goToPath = useGoToPath();
 
   function handleChange(e) {
     const groupName = e.target.value;
-    if (groupName !== "null") {
+    if (groupName) {
       goToPath(`/${groupName}`);
     }
   }
@@ -26,6 +27,6 @@ function ChooseGroup() {
       </select>
     </div>
   );
-}
+};
 
 export default ChooseGroup;

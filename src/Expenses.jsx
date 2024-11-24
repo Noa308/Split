@@ -31,6 +31,7 @@ function Expenses() {
     },
   ];
   const columnsSize = Object.keys(expenses[0]).length;
+  console.log(columnsSize);
   const orederdExpenses = expenses.map((expenses) => (
     <Expense
       key={expenses.id}

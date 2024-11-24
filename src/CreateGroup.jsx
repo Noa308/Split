@@ -2,16 +2,16 @@ import { useContext, useState } from "react";
 import { GroupContext } from "./GroupContext";
 
 function CreateGroup() {
-  const [newGroupName, setNewGroupName] = useState("");
+  const [newgroupName, setNewgroupName] = useState("");
   const [message, setMessage] = useState("");
   const { groups, setGroups } = useContext(GroupContext);
 
   const handleAddGroup = () => {
-    if (newGroupName && !groups.includes(newGroupName)) {
-      setGroups([...groups, newGroupName]);
-      setNewGroupName("");
+    if (newgroupName && !groups.includes(newgroupName)) {
+      setGroups([...groups, newgroupName]);
+      setNewgroupName("");
       setMessage("");
-    } else if (groups.includes(newGroupName)) {
+    } else if (groups.includes(newgroupName)) {
       setMessage("You already added this group.");
     } else {
       setMessage("You need to enter the name of the group.");
@@ -23,8 +23,8 @@ function CreateGroup() {
       <label className="px-2 font-medium">Create a new group:</label>
       <input
         type="text"
-        value={newGroupName}
-        onChange={(e) => (setNewGroupName(e.target.value), setMessage(""))}
+        value={newgroupName}
+        onChange={(e) => (setNewgroupName(e.target.value), setMessage(""))}
         placeholder="Enter group name here"
       />
       <button
