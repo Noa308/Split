@@ -1,18 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GroupContext } from "./GroupContext";
 import useGoToPath from "./useGoToPath";
 
 const ChooseGroup = () => {
   const { groups } = useContext(GroupContext);
-
+  const [groupsData, setGroupsData] = useState(null);
   const goToPath = useGoToPath();
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     const groupName = e.target.value;
     if (groupName) {
       goToPath(`/${groupName}`);
     }
-  }
+  };
+
+  const getGroups = async () => {
+    const response = (await fetch("localhost:3000/getGroups")).json();
+    console.log(response);
+    setGroupsData(response);
+  };
+
+  useEffect(() => {
+    getGroups();
+  }, []);
 
   return (
     <div>

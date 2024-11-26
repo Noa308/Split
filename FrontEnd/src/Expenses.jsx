@@ -3,7 +3,7 @@ import Expense from "./Expense";
 const EQUALLY = "You paid, split equally";
 const FULL_AMOUNT = "You are owed the full amount";
 
-function Expenses() {
+const Expenses = () => {
   const expenses = [
     {
       id: 1,
@@ -30,7 +30,8 @@ function Expenses() {
       howToSplit: EQUALLY,
     },
   ];
-  const columnsSize = Object.keys(expenses[0]).length;
+  const columnsSize = 6;
+  // const columnsSize = Object.keys(expenses[0]).length;
   console.log(columnsSize);
   const orederdExpenses = expenses.map((expenses) => (
     <Expense
@@ -41,12 +42,11 @@ function Expenses() {
       date={expenses.date}
       whoPay={expenses.whoPay}
       howToSplit={expenses.howToSplit}
-      columnsSize={columnsSize}
     />
   ));
   return (
     <div className="w-2/3 ">
-      <div className={`grid grid-cols-${columnsSize} text-lg font-bold`}>
+      <div className={`grid grid-cols-6 text-lg font-bold`}>
         <p>Expense Number</p>
         <p>Who Pay</p>
         <p>Expense date</p>
@@ -57,6 +57,6 @@ function Expenses() {
       <div className="py-2">{orederdExpenses}</div>
     </div>
   );
-}
+};
 
 export default Expenses;

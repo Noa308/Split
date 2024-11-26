@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
 import { GroupProvider } from "./GroupProvider";
 import GroupPage from "./GroupPage";
