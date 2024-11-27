@@ -25,7 +25,17 @@ const request_habdler = async (res, query, queryVar) => {
   }
 };
 
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.post("/addGroup", makeLogger(["groupName"]), (req, res) => {
+  console.log(req.body);
   const groupName = req.body.groupName;
   if (!groupName) {
     return res.status(400).send();

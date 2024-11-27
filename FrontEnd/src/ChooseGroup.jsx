@@ -1,10 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { GroupContext } from "./GroupContext";
+import { useEffect } from "react";
 import useGoToPath from "./useGoToPath";
 
-const ChooseGroup = () => {
-  const { groups } = useContext(GroupContext);
-  const [groupsData, setGroupsData] = useState(null);
+const ChooseGroup = ({ groups, setGroups }) => {
   const goToPath = useGoToPath();
 
   const handleChange = (e) => {
@@ -14,24 +11,24 @@ const ChooseGroup = () => {
     }
   };
 
-  const getGroups = async () => {
-    const response = (await fetch("localhost:3000/getGroups")).json();
-    console.log(response);
-    setGroupsData(response);
-  };
-
   useEffect(() => {
+    const getGroups = async () => {
+      const response = await fetch("http://localhost:3000/getGroups", {});
+      const res = await response.json();
+      setGroups(res);
+    };
     getGroups();
-  }, []);
+  }, [setGroups]);
 
   return (
     <div>
       <label className="px-2 font-medium">Choose your group:</label>
       <select onChange={handleChange}>
         <option value="null">Select a group</option>
-        {groups.map((group, index) => (
-          <option key={index} value={group}>
-            {group}
+        {groups.map((group) => (
+          <option key={group.id} value={group.name}>
+            {group.name}
+            {console.log(group)}
           </option>
         ))}
       </select>

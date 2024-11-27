@@ -1,8 +1,10 @@
 import CreateGroup from "./CreateGroup";
 import ChooseGroup from "./ChooseGroup";
 import BackButton from "./BackButton";
+import { useState } from "react";
 
 function HomePage() {
+  const [groups, setGroups] = useState([]);
   return (
     <div>
       <BackButton path="/Groups" text="go to the groups page" />
@@ -11,8 +13,8 @@ function HomePage() {
           Welcom to Split
         </p>
         <div className="p-4">
-          <CreateGroup />
-          <ChooseGroup />
+          <CreateGroup setGroups={setGroups} />
+          <ChooseGroup groups={groups} setGroups={setGroups} />
         </div>
       </div>
     </div>
