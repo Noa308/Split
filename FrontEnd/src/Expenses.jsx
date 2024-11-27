@@ -1,47 +1,62 @@
+import { useEffect, useState } from "react";
 import Expense from "./Expense";
 
-const EQUALLY = "You paid, split equally";
-const FULL_AMOUNT = "You are owed the full amount";
+const Expenses = ({ id }) => {
+  const [expenses, setExpenses] = useState([]);
 
-const Expenses = () => {
-  const expenses = [
-    {
-      id: 1,
-      title: "Super",
-      amount: 15,
-      date: "2023-01-04",
-      whoPay: "Gilad",
-      howToSplit: EQUALLY,
-    },
-    {
-      id: 2,
-      title: "Movie",
-      amount: 5,
-      date: "2024-03-04",
-      whoPay: "Noa",
-      howToSplit: FULL_AMOUNT,
-    },
-    {
-      id: 3,
-      title: "Shopping",
-      amount: 40,
-      date: "2024-05-06",
-      whoPay: "Gilad",
-      howToSplit: EQUALLY,
-    },
-  ];
-  const columnsSize = 6;
+  const getExpenses = async (id) => {
+    const response = await fetch(
+      "http://localhost:3000/getGroupExpenses?" +
+        new URLSearchParams({
+          groupId: id,
+        }).toString()
+    );
+    const res = await response.json();
+    console.log(res);
+    setExpenses(res);
+  };
+
+  useEffect(() => {
+    getExpenses(id);
+  }, [id]);
+
+  // const expenses = [
+  //   {
+  //     id: 1,
+  //     title: "Super",
+  //     amount: 15,
+  //     date: "2023-01-04",
+  //     whoPay: "Gilad",
+  //     howToSplit: EQUALLY,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Movie",
+  //     amount: 5,
+  //     date: "2024-03-04",
+  //     whoPay: "Noa",
+  //     howToSplit: FULL_AMOUNT,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Shopping",
+  //     amount: 40,
+  //     date: "2024-05-06",
+  //     whoPay: "Gilad",
+  //     howToSplit: EQUALLY,
+  //   },
+  // ];
   // const columnsSize = Object.keys(expenses[0]).length;
-  console.log(columnsSize);
+
   const orederdExpenses = expenses.map((expenses) => (
     <Expense
       key={expenses.id}
       id={expenses.id}
-      title={expenses.title}
+      title={expenses.name}
       amount={expenses.amount}
       date={expenses.date}
-      whoPay={expenses.whoPay}
-      howToSplit={expenses.howToSplit}
+      whoPay={expenses.paid_by}
+      howToSplit={expenses.split_equaly}
     />
   ));
   return (

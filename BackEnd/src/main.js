@@ -4,11 +4,22 @@ const { client, connect } = require("./db");
 app.use(express.json());
 const port = 3000;
 
-const makeLogger = (params) => {
+const makeLoggerPost = (params) => {
   return (req, res, next) => {
     console.log(req.path);
     let s = "params: ";
     s += params.map((parm) => `${parm}: ${req.body[parm]}`).join(",");
+    console.log(s);
+    next();
+    //middleware
+  };
+};
+
+const makeLoggerGet = (params) => {
+  return (req, res, next) => {
+    console.log(req.path);
+    let s = "params: ";
+    s += params.map((parm) => `${parm}: ${req.query[parm]}`).join(",");
     console.log(s);
     next();
     //middleware
@@ -34,7 +45,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post("/addGroup", makeLogger(["groupName"]), (req, res) => {
+app.post("/addGroup", makeLoggerPost(["groupName"]), (req, res) => {
   console.log(req.body);
   const groupName = req.body.groupName;
   if (!groupName) {
@@ -45,7 +56,7 @@ app.post("/addGroup", makeLogger(["groupName"]), (req, res) => {
   ]);
 });
 
-app.post("/addUser", makeLogger(["userName"]), (req, res) => {
+app.post("/addUser", makeLoggerPost(["userName"]), (req, res) => {
   const userName = req.body.userName;
   if (!userName) {
     return res.status(400).send();
@@ -57,7 +68,7 @@ app.post("/addUser", makeLogger(["userName"]), (req, res) => {
 
 app.post(
   "/addUserToGroup",
-  makeLogger(["groupId", "userId"]),
+  makeLoggerPost(["groupId", "userId"]),
   async (req, res) => {
     const { groupId, userId } = req.body;
     if (!groupId || !userId) {
@@ -73,7 +84,7 @@ app.post(
 
 app.post(
   "/addExpense",
-  makeLogger([
+  makeLoggerPost([
     "expenseName",
     "amount",
     "date",
@@ -102,8 +113,8 @@ app.post(
   }
 );
 
-app.get("/getGroupExpenses", makeLogger(["groupId"]), async (req, res) => {
-  const groupId = req.body.groupId;
+app.get("/getGroupExpenses", makeLoggerGet(["groupId"]), async (req, res) => {
+  const groupId = req.query.groupId;
   if (!groupId) {
     return res.status(400).send();
   }
@@ -126,8 +137,8 @@ app.get("/getGroups", async (req, res) => {
   res.status(200).json(rows);
 });
 
-app.get("/getGroupUsers", makeLogger(["groupId"]), async (req, res) => {
-  const groupId = req.body.groupId;
+app.get("/getGroupUsers", makeLoggerGet(["groupId"]), async (req, res) => {
+  const groupId = req.query.groupId;
   if (!groupId) {
     return res.status(400).send();
   }
@@ -135,6 +146,17 @@ app.get("/getGroupUsers", makeLogger(["groupId"]), async (req, res) => {
     `select user_id from users_in_groups where group_id= $1`,
     [groupId]
   );
+  res.status(200).json(rows);
+});
+
+app.get("/getGroupName", makeLoggerGet(["groupId"]), async (req, res) => {
+  const groupId = req.query.groupId;
+  if (!groupId) {
+    return res.status(400).send();
+  }
+  const { rows } = await client.query(`select name from groups where id= $1`, [
+    groupId,
+  ]);
   res.status(200).json(rows);
 });
 

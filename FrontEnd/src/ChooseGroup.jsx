@@ -28,7 +28,6 @@ const ChooseGroup = ({ groups, setGroups }) => {
         {groups.map((group) => (
           <option key={group.id} value={group.name}>
             {group.name}
-            {console.log(group)}
           </option>
         ))}
       </select>
