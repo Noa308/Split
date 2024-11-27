@@ -160,6 +160,17 @@ app.get("/getGroupName", makeLoggerGet(["groupId"]), async (req, res) => {
   res.status(200).json(rows);
 });
 
+app.get("/getUserName", makeLoggerGet(["userId"]), async (req, res) => {
+  const userId = req.query.userId;
+  if (!userId) {
+    return res.status(400).send();
+  }
+  const { rows } = await client.query(`select name from users where id= $1`, [
+    userId,
+  ]);
+  res.status(200).json(rows);
+});
+
 app.listen(port, async () => {
   await connect();
   console.log(`Example app listening on port ${port}`);
