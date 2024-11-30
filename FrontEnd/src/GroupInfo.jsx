@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
+import useGetGroups from "./useGetGroups";
 
 const GroupInfo = ({ id }) => {
   const [name, setName] = useState("");
-  const getGroups = async (id) => {
-    const response = await fetch(
-      "http://localhost:3000/getGroupName?" +
-        new URLSearchParams({
-          groupId: id,
-        }).toString()
-    );
-    const res = await response.json();
-    setName(res[0].name);
-  };
+
+  const getGroups = useGetGroups({ setName });
 
   useEffect(() => {
     getGroups(id);
-  }, [id]);
+  }, [id, getGroups]);
 
   return (
     <div className="flex flex-col items-center bg-blue-100 w-full">

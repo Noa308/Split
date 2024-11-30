@@ -143,7 +143,7 @@ app.get("/getGroupUsers", makeLoggerGet(["groupId"]), async (req, res) => {
     return res.status(400).send();
   }
   const { rows } = await client.query(
-    `select user_id from users_in_groups where group_id= $1`,
+    `select ug.user_id,u.name from users_in_groups ug inner join users u on ug.user_id =u.id  where ug.group_id= $1`,
     [groupId]
   );
   res.status(200).json(rows);

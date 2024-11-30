@@ -34,5 +34,4 @@ const ChooseGroup = ({ groups, setGroups }) => {
     </div>
   );
 };
-
 export default ChooseGroup;
