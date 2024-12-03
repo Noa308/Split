@@ -11,7 +11,6 @@ const useGetUsers = (id) => {
         }).toString()
     );
     const userRes = await response.json();
-    console.log(userRes);
     setUsers(userRes);
   };
 

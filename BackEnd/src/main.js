@@ -100,11 +100,12 @@ app.post(
       !amount ||
       !date ||
       !whoPay ||
-      !splitEqualy ||
-      !groupId
+      !groupId ||
+      ![true, false].includes(splitEqualy)
     ) {
       return res.status(400).send();
     }
+
     request_habdler(
       res,
       `INSERT INTO expenses ( name, amount, date, paid_by, split_equaly, group_id) VALUES ($1, $2, $3, $4, $5, $6 ) RETURNING id`,

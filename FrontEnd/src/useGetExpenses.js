@@ -1,4 +1,7 @@
-const useGetExpenses = ({ setExpenses }) => {
+import { useEffect, useState } from "react";
+
+const useGetExpenses = (id) => {
+  const [expenses, setExpenses] = useState([]);
   const getExpenses = async (id) => {
     const response = await fetch(
       "http://localhost:3000/getGroupExpenses?" +
@@ -7,10 +10,14 @@ const useGetExpenses = ({ setExpenses }) => {
         }).toString()
     );
     const expenseRes = await response.json();
-    console.log(expenseRes);
     setExpenses(expenseRes);
   };
-  return getExpenses;
+
+  useEffect(() => {
+    getExpenses(id);
+  }, [id]);
+
+  return expenses;
 };
 
 export default useGetExpenses;

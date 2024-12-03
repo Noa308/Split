@@ -1,11 +1,17 @@
-import { useState } from "react";
 import Expense from "./Expense";
-import AddExpense from "./AddExpense";
+import CreateExpense from "./CreateExpense";
+import useGetExpenses from "./useGetExpenses";
+import { useEffect, useState } from "react";
 
 const Expenses = ({ id }) => {
-  const [expenses, setExpenses] = useState([]);
+  const expenses = useGetExpenses(id);
+  const [expensesToShow, setExpensesToShow] = useState([]);
 
-  const orederdExpenses = expenses.map((expenses) => (
+  useEffect(() => {
+    setExpensesToShow(expenses);
+  }, [expenses]);
+
+  const orederdExpenses = expensesToShow.map((expenses) => (
     <Expense
       key={expenses.id}
       id={expenses.id}
@@ -19,7 +25,9 @@ const Expenses = ({ id }) => {
 
   return (
     <div className="w-2/3 ">
-      <AddExpense id={id} setExpenses={setExpenses} />
+      {console.log(expenses)}
+      {console.log(expensesToShow)}
+      <CreateExpense id={id} setExpensesToShow={setExpensesToShow} />
       <div className={`grid grid-cols-6 text-lg font-bold`}>
         <p>Expense Number</p>
         <p>Who Pay</p>
