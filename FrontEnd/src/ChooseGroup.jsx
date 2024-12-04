@@ -5,9 +5,9 @@ const ChooseGroup = ({ groups, setGroups }) => {
   const goToPath = useGoToPath();
 
   const handleChange = (e) => {
-    const groupName = e.target.value;
-    if (groupName) {
-      goToPath(`/${groupName}`);
+    const groupId = e.target.value;
+    if (groupId) {
+      goToPath(`/Groups/${groupId}`);
     }
   };
 
@@ -26,7 +26,7 @@ const ChooseGroup = ({ groups, setGroups }) => {
       <select onChange={handleChange}>
         <option value="null">Select a group</option>
         {groups.map((group) => (
-          <option key={group.id} value={group.name}>
+          <option key={group.id} value={group.id}>
             {group.name}
           </option>
         ))}
