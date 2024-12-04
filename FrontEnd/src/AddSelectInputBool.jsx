@@ -1,14 +1,8 @@
-import { useState } from "react";
-
 const AddSelectInputBool = ({ text, setX }) => {
   const handleClick = (e) => {
     e.preventDefault();
-    setVal(e.target.value);
-    val === "true" ? setBollVal(true) : setBollVal(false);
-    setX(bool_val);
+    e.target.value === "true" ? setX(true) : setX(false);
   };
-  const [val, setVal] = useState("");
-  const [bool_val, setBollVal] = useState(true);
   return (
     <div>
       <label>{text}</label>
@@ -17,8 +11,8 @@ const AddSelectInputBool = ({ text, setX }) => {
         onChange={handleClick}
         id={text}
       >
-        <option value="true">true</option>
-        <option value="false">false</option>
+        <option value="true">split equally</option>
+        <option value="false">I am owed the full amount</option>
       </select>
     </div>
   );

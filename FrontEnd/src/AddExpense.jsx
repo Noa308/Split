@@ -12,7 +12,14 @@ function AddExpense({
 }) {
   const addExpense = useAddExpense();
   const handleOnClick = async () => {
-    if (expenseName && amount && date && whoPay && splitEqualy && id) {
+    if (
+      expenseName &&
+      amount &&
+      date &&
+      whoPay &&
+      [true, false].includes(splitEqualy) &&
+      id
+    ) {
       setMessage("");
       const returningId = await addExpense(
         expenseName,

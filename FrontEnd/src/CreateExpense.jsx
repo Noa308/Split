@@ -18,7 +18,7 @@ const CreateExpense = ({ id, setExpensesToShow }) => {
       <AddInput text={"Add title: "} setX={setExpenseName} size="30" />
       <AddInput text={"Add amount: "} setX={setAmount} size="16" />
       <AddInput text={"Add date: "} setX={setDate} size="18" />
-      <AddSelectInputBool text={"To split equaly? "} setX={setSplitEqualy} />
+      <AddSelectInputBool text={"How to split? "} setX={setSplitEqualy} />
       <AddSelectInputArray text={"Who pay: "} setX={setWhopPay} id={id} />
       <AddExpense
         expenseName={expenseName}
