@@ -172,6 +172,18 @@ app.get("/getUserName", makeLoggerGet(["userId"]), async (req, res) => {
   res.status(200).json(rows);
 });
 
+app.get("/getGroupBalance", makeLoggerGet(["groupId"]), async (req, res) => {
+  const groupId = req.query.groupId;
+  if (!groupId) {
+    return res.status(400).send();
+  }
+  const { rows } = await client.query(
+    `select u.id, u.name ,ug.balance from users_in_groups ug join users u on ug.user_id = u.id where ug.group_id = $1`,
+    [groupId]
+  );
+  res.status(200).json(rows);
+});
+
 app.listen(port, async () => {
   await connect();
   console.log(`Example app listening on port ${port}`);
