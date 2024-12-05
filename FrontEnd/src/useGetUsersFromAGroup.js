@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-const useGetUsers = (id) => {
+const useGetUsersFromAGroup = (id) => {
   const [users, setUsers] = useState([]);
 
-  const getUsers = async (id) => {
+  const getUsersFromAGroup = async (id) => {
     const response = await fetch(
       "http://localhost:3000/getGroupUsers?" +
         new URLSearchParams({
@@ -15,10 +15,10 @@ const useGetUsers = (id) => {
   };
 
   useEffect(() => {
-    getUsers(id);
+    getUsersFromAGroup(id);
   }, [id]);
 
   return users;
 };
 
-export default useGetUsers;
+export default useGetUsersFromAGroup;

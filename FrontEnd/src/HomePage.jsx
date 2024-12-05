@@ -2,6 +2,7 @@ import CreateGroup from "./CreateGroup";
 import ChooseGroup from "./ChooseGroup";
 // import BackButton from "./BackButton";
 import { useState } from "react";
+import CreateUser from "./CreateUser";
 
 function HomePage() {
   const [groups, setGroups] = useState([]);
@@ -13,6 +14,7 @@ function HomePage() {
           Welcom to Split
         </p>
         <div className="p-4">
+          <CreateUser />
           <CreateGroup setGroups={setGroups} />
           <ChooseGroup groups={groups} setGroups={setGroups} />
         </div>
