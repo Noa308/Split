@@ -27,7 +27,9 @@ const Expenses = ({ id }) => {
     <div className="w-2/3 ">
       {console.log(expenses)}
       {console.log(expensesToShow)}
-      <CreateExpense id={id} setExpensesToShow={setExpensesToShow} />
+      <div className="flex justify-center my-8">
+        <CreateExpense id={id} setExpensesToShow={setExpensesToShow} />
+      </div>
       <div className={`grid grid-cols-6 text-lg font-bold`}>
         <p>Expense Number</p>
         <p>Who Pay</p>

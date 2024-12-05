@@ -18,20 +18,22 @@ const AddNewUserInGroup = ({ id }) => {
       <p className="font-bold text-blue-400 text-lg">
         Add new user to this groups:
       </p>
-      <AddSelectInputArray
-        text={"Choose user "}
-        setX={setUser}
-        id={id}
-        users={users}
-        idType="id"
-      />
-      <button
-        className="bg-blue-300 rounded-md font-medium mx-2"
-        type="button"
-        onClick={handleOnClick}
-      >
-        Add user
-      </button>
+      <div className="flex ">
+        <AddSelectInputArray
+          text={"Choose user: "}
+          setX={setUser}
+          id={id}
+          users={users}
+          idType="id"
+        />
+        <button
+          className="bg-blue-300 rounded-md font-bold mx-2"
+          type="button"
+          onClick={handleOnClick}
+        >
+          Add user
+        </button>
+      </div>
     </div>
   );
 };
