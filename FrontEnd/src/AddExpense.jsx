@@ -1,4 +1,6 @@
+import useChangeUserBalance from "./useChangeUserBalance";
 import useAddExpense from "./useAddExpense";
+import useGetGroupBalance from "./useGetGroupBalance";
 
 function AddExpense({
   id,
@@ -9,8 +11,12 @@ function AddExpense({
   splitEqualy,
   setMessage,
   setExpensesToShow,
+  users = [],
 }) {
   const addExpense = useAddExpense();
+  const balance = useGetGroupBalance(id);
+  const changeUserBalance = useChangeUserBalance();
+  const numOfUsers = users.length;
   const handleOnClick = async () => {
     if (
       expenseName &&
@@ -41,6 +47,23 @@ function AddExpense({
           group_id: id,
         },
       ]);
+      if (users.length > 0 && balance) {
+        //this is the problem- the fot going only on one user
+
+        ///
+        for (let user of users.filter((user) => user && user.user_id)) {
+          console.log(user);
+          await changeUserBalance(
+            user,
+            splitEqualy,
+            balance,
+            amount,
+            numOfUsers,
+            whoPay,
+            id
+          );
+        }
+      }
     } else {
       setMessage("You need to fill all the fields");
     }

@@ -27,16 +27,32 @@ const CreateExpense = ({ id, setExpensesToShow }) => {
         id={id}
         users={users}
       />
-      <AddExpense
-        expenseName={expenseName}
-        amount={amount}
-        date={date}
-        whoPay={whoPay}
-        splitEqualy={splitEqualy}
-        setMessage={setMessage}
-        id={id}
-        setExpensesToShow={setExpensesToShow}
-      />
+      {console.log(date)}
+      {users.length > 0 ? (
+        <AddExpense
+          expenseName={expenseName}
+          amount={amount}
+          date={date}
+          whoPay={whoPay}
+          splitEqualy={splitEqualy}
+          setMessage={setMessage}
+          id={id}
+          setExpensesToShow={setExpensesToShow}
+          users={users}
+        />
+      ) : (
+        <AddExpense
+          expenseName={expenseName}
+          amount={amount}
+          date={date}
+          whoPay={whoPay}
+          splitEqualy={splitEqualy}
+          setMessage={setMessage}
+          id={id}
+          setExpensesToShow={setExpensesToShow}
+          // here i didn't pass the users
+        />
+      )}
       <p className="text-red-600">{message}</p>
     </div>
   );

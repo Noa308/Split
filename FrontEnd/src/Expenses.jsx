@@ -25,8 +25,6 @@ const Expenses = ({ id }) => {
 
   return (
     <div className="w-2/3 ">
-      {console.log(expenses)}
-      {console.log(expensesToShow)}
       <div className="flex justify-center my-8">
         <CreateExpense id={id} setExpensesToShow={setExpensesToShow} />
       </div>

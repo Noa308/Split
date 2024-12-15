@@ -26,7 +26,7 @@ const makeLoggerGet = (params) => {
   };
 };
 
-const request_habdler = async (res, query, queryVar) => {
+const request_handler = async (res, query, queryVar) => {
   const { rows } = await client.query(query, queryVar);
   console.log(rows);
   if (rows.length > 0) {
@@ -51,7 +51,7 @@ app.post("/addGroup", makeLoggerPost(["groupName"]), (req, res) => {
   if (!groupName) {
     return res.status(400).send();
   }
-  request_habdler(res, `INSERT INTO groups (name) VALUES ($1) RETURNING id`, [
+  request_handler(res, `INSERT INTO groups (name) VALUES ($1) RETURNING id`, [
     groupName,
   ]);
 });
@@ -61,7 +61,7 @@ app.post("/addUser", makeLoggerPost(["userName"]), (req, res) => {
   if (!userName) {
     return res.status(400).send();
   }
-  request_habdler(res, `INSERT INTO users (name) VALUES ($1) RETURNING id`, [
+  request_handler(res, `INSERT INTO users (name) VALUES ($1) RETURNING id`, [
     userName,
   ]);
 });
@@ -106,11 +106,28 @@ app.post(
       return res.status(400).send();
     }
 
-    request_habdler(
+    request_handler(
       res,
       `INSERT INTO expenses ( name, amount, date, paid_by, split_equaly, group_id) VALUES ($1, $2, $3, $4, $5, $6 ) RETURNING id`,
       [expenseName, amount, date, whoPay, splitEqualy, groupId]
     );
+    //this should update balance
+  }
+);
+
+app.post(
+  "/addBalance",
+  makeLoggerPost(["userId", "newBalance", "groupId"]),
+  async (req, res) => {
+    const { userId, newBalance, groupId } = req.body;
+    if (!userId || !newBalance || !groupId) {
+      return res.status(400).send();
+    }
+    await client.query(
+      `update users_in_groups set balance=$1 where ((user_id=$2) and (group_id=$3))`,
+      [newBalance, userId, groupId]
+    );
+    res.status(200).send();
   }
 );
 
