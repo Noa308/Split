@@ -19,7 +19,11 @@ function GroupPage({ id }) {
       <div className="flex flex-col items-center w-full">
         <GroupInfo id={id} balanceToShow={balanceToShow} />
         <AddNewUserInGroup id={id} />
-        <Expenses id={id} setBalanceToShow={setBalanceToShow} />
+        <Expenses
+          id={id}
+          setBalanceToShow={setBalanceToShow}
+          balanceToShow={balanceToShow}
+        />
       </div>
     </div>
   );

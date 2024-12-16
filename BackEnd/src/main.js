@@ -121,7 +121,7 @@ app.post(
   makeLoggerPost(["userId", "newBalance", "groupId"]),
   async (req, res) => {
     const { userId, newBalance, groupId } = req.body;
-    if (!userId || !newBalance || !groupId) {
+    if (!userId || !groupId) {
       return res.status(400).send();
     }
     await client.query(

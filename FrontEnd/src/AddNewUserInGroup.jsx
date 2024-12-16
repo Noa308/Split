@@ -9,8 +9,7 @@ const AddNewUserInGroup = ({ id }) => {
   const users = useGetUsersFromAllGroups();
 
   const handleOnClick = async () => {
-    const returningId = await AddUserToGroup(user, id);
-    console.log(returningId);
+    await AddUserToGroup(user, id);
   };
 
   return (

@@ -14,7 +14,7 @@ const useChangeUserBalance = () => {
   ) => {
     const index = formerBalance.findIndex((obj) => obj.id === user.user_id);
     const formerBalanceToUser = formerBalance[index]?.balance || 0;
-
+    console.log(formerBalanceToUser);
     // console.log("Calculating new balance for user:", user);
     // console.log("Split equally:", splitEqualy);
     // console.log("Former balance for user:", formerBalanceToUser);

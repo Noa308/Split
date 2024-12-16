@@ -5,7 +5,12 @@ import AddExpense from "./AddExpense";
 import AddSelectInputArray from "./AddSelectInputArray";
 import useGetUsersFromAGroup from "./useGetUsersFromAGroup";
 
-const CreateExpense = ({ id, setExpensesToShow, setBalanceToShow }) => {
+const CreateExpense = ({
+  id,
+  setExpensesToShow,
+  setBalanceToShow,
+  balanceToShow,
+}) => {
   const [expenseName, setExpenseName] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState(0);
@@ -54,6 +59,7 @@ const CreateExpense = ({ id, setExpensesToShow, setBalanceToShow }) => {
           setExpensesToShow={setExpensesToShow}
           users={users}
           setBalanceToShow={setBalanceToShow}
+          balanceToShow={balanceToShow}
         />
       ) : (
         <AddExpense
@@ -65,6 +71,7 @@ const CreateExpense = ({ id, setExpensesToShow, setBalanceToShow }) => {
           setMessage={setMessage}
           id={id}
           setExpensesToShow={setExpensesToShow}
+          balanceToShow={balanceToShow}
           // here i didn't pass the users
         />
       )}

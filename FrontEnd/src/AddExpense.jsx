@@ -1,6 +1,5 @@
 import useChangeUserBalance from "./useChangeUserBalance";
 import useAddExpense from "./useAddExpense";
-import useGetGroupBalance from "./useGetGroupBalance";
 
 function AddExpense({
   id,
@@ -13,9 +12,9 @@ function AddExpense({
   setExpensesToShow,
   users = [],
   setBalanceToShow,
+  balanceToShow,
 }) {
   const addExpense = useAddExpense();
-  const balance = useGetGroupBalance(id);
   const changeUserBalance = useChangeUserBalance();
   const numOfUsers = users.length;
   const handleOnClick = async () => {
@@ -48,13 +47,13 @@ function AddExpense({
           group_id: id,
         },
       ]);
-      if (users.length > 0 && balance) {
+      if (users.length > 0 && balanceToShow) {
         let calculatingBalance = [];
         for (let user of users.filter((user) => user && user.user_id)) {
           const updatedBalance = await changeUserBalance(
             user,
             splitEqualy,
-            balance,
+            balanceToShow,
             amount,
             numOfUsers,
             whoPay,
