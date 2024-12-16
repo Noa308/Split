@@ -3,13 +3,16 @@ import useAddUserToGroup from "./useAddUserToGroup";
 import AddSelectInputArray from "./AddSelectInputArray";
 import useGetUsersFromAllGroups from "./useGetUsersFromAllGroups";
 
-const AddNewUserInGroup = ({ id }) => {
+const AddNewUserInGroup = ({ id, setUsersToShow }) => {
   const AddUserToGroup = useAddUserToGroup();
   const [user, setUser] = useState("");
   const users = useGetUsersFromAllGroups();
 
   const handleOnClick = async () => {
     await AddUserToGroup(user, id);
+    console.log();
+    const name = users.find((u) => u.id === user).name;
+    setUsersToShow((users) => [...users, { user_id: user, name: name }]);
   };
 
   return (

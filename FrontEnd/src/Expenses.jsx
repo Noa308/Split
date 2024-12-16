@@ -3,7 +3,7 @@ import CreateExpense from "./CreateExpense";
 import useGetExpenses from "./useGetExpenses";
 import { useEffect, useState } from "react";
 
-const Expenses = ({ id, setBalanceToShow, balanceToShow }) => {
+const Expenses = ({ id, setBalanceToShow, balanceToShow, usersToShow }) => {
   const expenses = useGetExpenses(id);
   const [expensesToShow, setExpensesToShow] = useState([]);
 
@@ -31,6 +31,7 @@ const Expenses = ({ id, setBalanceToShow, balanceToShow }) => {
           setExpensesToShow={setExpensesToShow}
           setBalanceToShow={setBalanceToShow}
           balanceToShow={balanceToShow}
+          usersToShow={usersToShow}
         />
       </div>
       <div className={`grid grid-cols-6 text-lg font-bold`}>

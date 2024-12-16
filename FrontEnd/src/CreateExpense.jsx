@@ -3,13 +3,13 @@ import AddInput from "./AddInput";
 import AddSelectInputBool from "./AddSelectInputBool";
 import AddExpense from "./AddExpense";
 import AddSelectInputArray from "./AddSelectInputArray";
-import useGetUsersFromAGroup from "./useGetUsersFromAGroup";
 
 const CreateExpense = ({
   id,
   setExpensesToShow,
   setBalanceToShow,
   balanceToShow,
+  usersToShow,
 }) => {
   const [expenseName, setExpenseName] = useState("");
   const [amount, setAmount] = useState(0);
@@ -17,7 +17,6 @@ const CreateExpense = ({
   const [whoPay, setWhopPay] = useState("");
   const [splitEqualy, setSplitEqualy] = useState(true);
   const [message, setMessage] = useState("");
-  const users = useGetUsersFromAGroup(id);
 
   return (
     <div>
@@ -45,9 +44,9 @@ const CreateExpense = ({
         text={"Who pay: "}
         setX={setWhopPay}
         id={id}
-        users={users}
+        users={usersToShow}
       />
-      {users.length > 0 ? (
+      {usersToShow.length > 0 ? (
         <AddExpense
           expenseName={expenseName}
           amount={amount}
@@ -57,7 +56,7 @@ const CreateExpense = ({
           setMessage={setMessage}
           id={id}
           setExpensesToShow={setExpensesToShow}
-          users={users}
+          users={usersToShow}
           setBalanceToShow={setBalanceToShow}
           balanceToShow={balanceToShow}
         />
