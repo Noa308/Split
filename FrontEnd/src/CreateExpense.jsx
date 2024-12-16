@@ -27,7 +27,6 @@ const CreateExpense = ({ id, setExpensesToShow }) => {
         id={id}
         users={users}
       />
-      {console.log(date)}
       {users.length > 0 ? (
         <AddExpense
           expenseName={expenseName}
