@@ -3,7 +3,7 @@ import CreateExpense from "./CreateExpense";
 import useGetExpenses from "./useGetExpenses";
 import { useEffect, useState } from "react";
 
-const Expenses = ({ id }) => {
+const Expenses = ({ id, setBalanceToShow }) => {
   const expenses = useGetExpenses(id);
   const [expensesToShow, setExpensesToShow] = useState([]);
 
@@ -26,7 +26,11 @@ const Expenses = ({ id }) => {
   return (
     <div className="w-2/3 ">
       <div className="flex justify-center my-8">
-        <CreateExpense id={id} setExpensesToShow={setExpensesToShow} />
+        <CreateExpense
+          id={id}
+          setExpensesToShow={setExpensesToShow}
+          setBalanceToShow={setBalanceToShow}
+        />
       </div>
       <div className={`grid grid-cols-6 text-lg font-bold`}>
         <p>Expense Number</p>

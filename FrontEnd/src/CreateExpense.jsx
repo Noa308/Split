@@ -5,7 +5,7 @@ import AddExpense from "./AddExpense";
 import AddSelectInputArray from "./AddSelectInputArray";
 import useGetUsersFromAGroup from "./useGetUsersFromAGroup";
 
-const CreateExpense = ({ id, setExpensesToShow }) => {
+const CreateExpense = ({ id, setExpensesToShow, setBalanceToShow }) => {
   const [expenseName, setExpenseName] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState(2011 - 10 - 10);
@@ -38,6 +38,7 @@ const CreateExpense = ({ id, setExpensesToShow }) => {
           id={id}
           setExpensesToShow={setExpensesToShow}
           users={users}
+          setBalanceToShow={setBalanceToShow}
         />
       ) : (
         <AddExpense

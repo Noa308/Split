@@ -12,6 +12,7 @@ function AddExpense({
   setMessage,
   setExpensesToShow,
   users = [],
+  setBalanceToShow,
 }) {
   const addExpense = useAddExpense();
   const balance = useGetGroupBalance(id);
@@ -48,12 +49,9 @@ function AddExpense({
         },
       ]);
       if (users.length > 0 && balance) {
-        //this is the problem- the fot going only on one user
-
-        ///
+        let calculatingBalance = [];
         for (let user of users.filter((user) => user && user.user_id)) {
-          console.log(user);
-          await changeUserBalance(
+          const updatedBalance = await changeUserBalance(
             user,
             splitEqualy,
             balance,
@@ -62,7 +60,13 @@ function AddExpense({
             whoPay,
             id
           );
+          calculatingBalance.push({
+            id: user.user_id,
+            name: user.name,
+            balance: updatedBalance,
+          });
         }
+        setBalanceToShow(calculatingBalance);
       }
     } else {
       setMessage("You need to fill all the fields");

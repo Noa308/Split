@@ -43,6 +43,7 @@ const useChangeUserBalance = () => {
           err
         )
     );
+    return updatedBalance;
   };
 
   return changeUserBalance;
