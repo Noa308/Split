@@ -1,4 +1,10 @@
-const AddInput = ({ text, setX, inputType = "text", size }) => {
+const AddInput = ({
+  text,
+  setX,
+  inputType = "text",
+  size,
+  placeHolderText,
+}) => {
   return (
     <div>
       <label>{text}</label>
@@ -8,6 +14,7 @@ const AddInput = ({ text, setX, inputType = "text", size }) => {
         onChange={(e) => {
           setX(e.target.value);
         }}
+        placeholder={placeHolderText}
         className="bg-white border-black border-2"
       />
     </div>

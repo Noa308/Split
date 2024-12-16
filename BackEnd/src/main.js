@@ -105,6 +105,7 @@ app.post(
     ) {
       return res.status(400).send();
     }
+    console.log(date);
 
     request_handler(
       res,

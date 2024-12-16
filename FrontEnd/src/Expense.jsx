@@ -13,7 +13,7 @@ function Expense({ id, title, amount, date, whoPay, howToSplit }) {
       ) : (
         <p>no name</p>
       )}
-      <p>{`${dateAsDate.getDay()}-${
+      <p>{`${dateAsDate.getDate()}-${
         dateAsDate.getMonth() + 1
       }-${dateAsDate.getFullYear()}`}</p>
       <p>{title}</p>
